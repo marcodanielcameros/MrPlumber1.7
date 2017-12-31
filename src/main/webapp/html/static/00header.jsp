@@ -1,5 +1,6 @@
 <%@page import="pojo.Usuario"%>
 <script src="plantilla/vendors/jquery/dist/jquery.min.js"></script>
+<script src="public/header.js"></script>
 <script>
     var valor=localStorage['caja'];
     var cantidad;
@@ -135,21 +136,14 @@
             <span class="badge bg-green"></span>
           </a>
           <ul id="menu1" class="dropdown-menu list-unstyled msg_list" role="menu">
-            <!--<li>
-              <a>
-                <span class="image"><img src="public/img/user.svg" alt="Profile Image" /></span>
-                 <span>
-                  <span>MrPlumber</span>
-                  <span class="time"></span>
-                </span>
-                <span class="message">
-                  Film festivals used to be do-or-die moments for movie makers. They were where...
-                </span>
-              </a>
-            </li>-->
+             <a href="Agenda">
+              <li>
+                <div id="alerta"></div>
+              </li>
+             </a>
             <li>
               <div class="text-center">
-                <a>
+                  <a href="Agenda">
                   <strong>See All Alerts</strong>
                   <i class="fa fa-angle-right"></i>
                 </a>

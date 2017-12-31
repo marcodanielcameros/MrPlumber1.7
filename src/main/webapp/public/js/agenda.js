@@ -160,16 +160,17 @@ function ajax() {
             var yearM = date.substring(0, 4);
             var monthM = date.substring(5, 7);
             var dayM = date.substring(8, 10);
-            
+            console.log(yearS+" "+monthS+" "+dayS);
             datas.push({ 
                 id: data.data[i].idEventos,
                 name: data.data[i].name,
                 location: data.data[i].location,
                 text: data.data[i].text,
-                startDate: new Date(yearS, monthS, dayS),
-                endDate: new Date(yearM, monthM, dayM)
+                startDate: new Date(parseInt(yearS), parseInt(monthS)-1, parseInt(dayS)),
+                endDate: new Date(parseInt(yearM), parseInt(monthM)-1, parseInt(dayM))
             });
             //if (i + 1 < data.data.length)datas += ",";
+            
         } 
         calendar(datas);
         },

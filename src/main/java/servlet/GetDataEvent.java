@@ -25,19 +25,10 @@ import pojo.Eventos;
 @WebServlet(name = "GetDataEvent", urlPatterns = {"/GetDataEvent"})
 public class GetDataEvent extends HttpServlet {
 
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-    }
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        processRequest(request, response);
-    }
+
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
-        
         
         HttpSession misession = (HttpSession) request.getSession();
         
