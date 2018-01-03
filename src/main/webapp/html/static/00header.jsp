@@ -1,6 +1,6 @@
 <%@page import="pojo.Usuario"%>
 <script src="plantilla/vendors/jquery/dist/jquery.min.js"></script>
-<script src="public/header.js"></script>
+<script src="public/js/header.js"></script>
 <script>
     var valor=localStorage['caja'];
     var cantidad;
@@ -133,14 +133,10 @@
         <li role="presentation" class="dropdown">
           <a class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false">
             <i class="fa fa-envelope-o"></i>
-            <span class="badge bg-green"></span>
+            <span  id="NoAlertas" class="badge bg-green"></span>
           </a>
           <ul id="menu1" class="dropdown-menu list-unstyled msg_list" role="menu">
-             <a href="Agenda">
-              <li>
-                <div id="alerta"></div>
-              </li>
-             </a>
+            <div id="agenda"></div>
             <li>
               <div class="text-center">
                   <a href="Agenda">
