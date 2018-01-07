@@ -22,7 +22,7 @@ public class Conexion{
     private static final String DRIVER = "com.mysql.jdbc.Driver";     
     private static final String URL = "jdbc:mysql://a07yd3a6okcidwap.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/zbxv4rd7u4k5zprr"; 
     private static final String USERNAME = "b3vnhp4zvi06sw8j";   
-    private static final String PASSWORD = "v4qjuwhyo330m24k";
+    private static final String PASSWORD = "m6m3bx9efoerag9h";
     
     /*private static final String DRIVER = "com.mysql.jdbc.Driver";     
     private static final String URL = "jdbc:mysql://t89yihg12rw77y6f.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/t836uopkeinehoia"; 

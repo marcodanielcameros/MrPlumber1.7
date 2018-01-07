@@ -25,12 +25,16 @@ public class EventosDAO {
        this.session = session;
    }
    public List<Eventos> getAll(){
+           
+       //Transaction tx = session.beginTransaction();  
        try{
            List<Eventos> listaDeEventos = (List<Eventos>)session.createCriteria(Eventos.class).list();
            return listaDeEventos;
        }catch(ClassCastException e){
            System.out.println("Valores vacios");
            System.out.println(e);
+       }finally{
+         // tx.commit();
        }
        return null;
    }

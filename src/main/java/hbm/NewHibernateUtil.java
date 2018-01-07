@@ -48,22 +48,39 @@ public class NewHibernateUtil {
     
     public static Session getLocalSession(){
         Session session = (Session) localSession.get();
+        System.out.println("___"+session);
         if(session == null){
             session = sessionFactory.openSession();
+            System.out.println("___"+session);
             localSession.set(session);
-            System.out.println("sesion iniciada");
+            System.out.println("___"+(Session) localSession.get());
+            System.out.println("New sesion iniciada");
         }
         return session;
     }
+   /* public static Session getLocalSession(){
+        Session session = (Session) localSession.get();
+        if(session == null) {
+            session = sessionFactory.getCurrentSession();
+            localSession.set(session);
+            System.out.println("Sesion iniciada ");
+        }
+        return session;
+    }*/
     public static void closeLocalSession() {
          /**
           * Retorna la session 
           */
         Session session = (Session) localSession.get();
+        
         /**
          * Si la session no es nula entonces la cierra
          */
-        if (session != null) session.close();
+        System.out.println("___"+session);
+        if (session != null){
+            System.out.println("Cerro");
+            session.close();
+        }
         //Destruye el objeto
         localSession.set(null);
         //Imprime un mensaje que la session se cerro

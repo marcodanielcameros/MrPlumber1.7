@@ -6,6 +6,7 @@
 package servlet;
 
 import dao.EventosDAO;
+import hbm.NewHibernateUtil;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
@@ -15,6 +16,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 import org.json.JSONObject;
 import pojo.Eventos;
 
@@ -31,10 +34,12 @@ public class GetDataEvent extends HttpServlet {
             throws ServletException, IOException {
         
         HttpSession misession = (HttpSession) request.getSession();
+        Session session = (Session)misession.getAttribute("session");
+        
         
         if (misession.getAttribute("sesion").equals(true)){
             
-            EventosDAO eventos = new EventosDAO();
+            EventosDAO eventos = new EventosDAO(session);
             JSONObject json = new JSONObject();
             json.put("resultado", true);
             json.put("data", eventos.getAll());

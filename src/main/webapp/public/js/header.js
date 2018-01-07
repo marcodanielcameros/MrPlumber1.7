@@ -5,26 +5,11 @@
  */
 
 
-
-/*(function(){
-    /*htmlStr = "";
-    htmlStr += "<li>";
-    htmlStr += "<div class="+"text-center"+">";
-    htmlStr += "<a href="+"Agenda"+">";
-    htmlStr += "</a>";
-    htmlStr += "</div>";
-    htmlStr += "</li>";
-    htmlStr = 6;
-    console.log(htmlStr);
-})();*/
-
 $( document ).ready(function() {
     
     
 ajax();
-    
-// Handler for .ready() called.
-    
+   
 });
 
 

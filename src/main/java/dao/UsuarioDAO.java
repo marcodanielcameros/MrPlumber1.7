@@ -21,6 +21,11 @@ public class UsuarioDAO {
         // Se Almacena la session en una variable del objeto PersonDAO
         session=NewHibernateUtil.getLocalSession();
     }
+    public UsuarioDAO(Session session){
+        // Se Almacena la session en una variable del objeto PersonDAO
+        this.session=session;
+    }
+    
     public Usuario getUsuarioById(int id){
         //Retorna un objeto persona que tenga el id que mandamos en los parametros
         return (Usuario)session.load(Usuario.class,id);

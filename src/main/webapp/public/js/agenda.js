@@ -80,15 +80,9 @@ function ajaxEnviar(event){
             endDate: event.endDate.toJSON()
         },function (data) {
             NProgress.start();
-            // alert("Hey tu data");
         }
     );
 }
-     /*   id: event.id,
-        location: event.location,
-        text: event.location,
-        startDate: event.startDate,
-        endDate: event.endDate,*/
 function calendar(datas) {
     $('#calendar').calendar({
 

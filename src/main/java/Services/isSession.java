@@ -6,6 +6,7 @@
 package Services;
 
 import dao.UsuarioDAO;
+import hbm.NewHibernateUtil;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -14,6 +15,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import org.hibernate.Session;
 import pojo.Usuario;
 
 /**
@@ -78,7 +80,10 @@ public class isSession extends HttpServlet {
         processRequest(request, response);
 
         HttpSession misession = (HttpSession) request.getSession();
-        UsuarioDAO usuario = new UsuarioDAO();
+        
+        //Session session = NewHibernateUtil.getLocalSession();
+        Session session = (Session)misession.getAttribute("session");
+        UsuarioDAO usuario = new UsuarioDAO(session);
         
         try{
             Usuario miUsuario = (Usuario) misession.getAttribute("usuario");
@@ -89,6 +94,7 @@ public class isSession extends HttpServlet {
             }
                 
         }catch(Error e){
+            System.out.println("Error en isSession: ");
             System.out.println(e);
             response.sendRedirect("login.jsp");
         }

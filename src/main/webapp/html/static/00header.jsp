@@ -126,7 +126,7 @@
                 <span>Configuración</span>
               </a>
             </li> -->
-            <li><a href="Login"><i class="fa fa-sign-out pull-right"></i> Log Out</a></li>
+            <li><a href="signin"><i class="fa fa-sign-out pull-right"></i> Log Out</a></li>
           </ul>
         </li>
 

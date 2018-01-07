@@ -6,6 +6,7 @@
 package Services;
 
 import dao.UsuarioDAO;
+import hbm.NewHibernateUtil;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -14,6 +15,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 import pojo.Usuario;
 
 /**
@@ -61,7 +64,10 @@ public class signin extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        
+        System.out.println("Va pa fuera");
+        NewHibernateUtil.closeLocalSession();
+        response.sendRedirect("Login");
     }
 
     /**
@@ -78,8 +84,9 @@ public class signin extends HttpServlet {
         
         String correo = request.getParameter("correo");
         String clave = request.getParameter("clave");
-
-        UsuarioDAO usuario = new UsuarioDAO();
+        
+        Session session = NewHibernateUtil.getLocalSession();
+        UsuarioDAO usuario = new UsuarioDAO(session);
         Usuario is_persona = new Usuario();
         boolean isSession=false;
         try{
@@ -93,9 +100,8 @@ public class signin extends HttpServlet {
                 isSession=true;
                  
                 misession.setAttribute("usuario",is_persona);
-                System.out.println(is_persona.getIdUsuario());
-                System.out.println(((Usuario)misession.getAttribute("usuario")).getIdUsuario());
                 misession.setAttribute("sesion",isSession);
+                misession.setAttribute("session",session);
                 
                 response.sendRedirect("Inicio");
             }

@@ -52,9 +52,6 @@
                             <div class="clearfix"></div>
 
                             <div class="separator">
-                                <p class="change_link">
-                                    <a href="#signup" class="to_register"> Crea una cuenta </a>
-                                </p>
 
                                 <div class="clearfix"></div>
                                 <br />
