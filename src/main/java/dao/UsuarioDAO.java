@@ -6,6 +6,7 @@
 package dao;
 
 import hbm.NewHibernateUtil;
+import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.criterion.Restrictions;
 import pojo.Usuario;
@@ -24,6 +25,20 @@ public class UsuarioDAO {
     public UsuarioDAO(Session session){
         // Se Almacena la session en una variable del objeto PersonDAO
         this.session=session;
+    }
+    
+    public List<Usuario> getAllUsuario(){
+        //Retorna un objeto persona que tenga el id que mandamos en los parametros
+        
+        try{
+            List <Usuario> usr = (List <Usuario>)session.createCriteria(Usuario.class).list();
+            return usr;
+        }
+        catch(ClassCastException e){
+            
+           System.out.println("Valores vacios");
+           System.out.println(e);
+        }return null;
     }
     
     public Usuario getUsuarioById(int id){
