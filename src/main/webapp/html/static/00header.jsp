@@ -50,9 +50,14 @@
               <li><a href="Compras">Compras</a></li>
             </ul>
           </li>
-          <li><a><i class="fa fa-users"></i> Clientes <span class="fa fa-chevron-down"></span></a>
+          <li><a><i class="fa fa-hand-o-right"></i> Clientes <span class="fa fa-chevron-down"></span></a>
             <ul class="nav child_menu">
               <li><a href="Clientes">Clientes</a></li>
+            </ul>
+          </li>
+          <li><a><i class="fa fa-child"></i> Usuarios <span class="fa fa-chevron-down"></span></a>
+            <ul class="nav child_menu"> 
+              <li><a href="Usuarios">Usuarios</a></li>
             </ul>
           </li>
           <li><a><i class="fa fa-hand-peace-o"></i> Socios <span class="fa fa-chevron-down"></span></a>
