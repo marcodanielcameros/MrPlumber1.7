@@ -8,6 +8,7 @@ package dao;
 import hbm.NewHibernateUtil;
 import java.util.List;
 import org.hibernate.Session;
+import org.hibernate.Transaction;
 import org.hibernate.criterion.Restrictions;
 import pojo.Usuario;
 
@@ -59,4 +60,25 @@ public class UsuarioDAO {
              return false;
          }      
     }
+    
+       public boolean saveEvento(String correo,String clave){
+       Usuario usuario = new Usuario();
+       usuario.setCorreo(correo);
+       usuario.setClave(clave);
+       
+       try{
+            //Intentara iniciar una transaction de no ser posible procedera en el catch
+            Transaction transaccion=session.beginTransaction();
+            //Almacenara mi objeto personaDeTanque en la base de datos
+            session.save(usuario);
+            //Actualizara a mis sessiones que la base de datos fue actualizada
+            transaccion.commit();
+            return true;
+        }catch(Exception e){
+            
+        }finally{
+            
+        }
+        return false;
+   }
 }

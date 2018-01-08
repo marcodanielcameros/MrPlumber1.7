@@ -8,7 +8,12 @@ package servlet;
 import dao.EventosDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -16,6 +21,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import model.Json;
+import org.hibernate.Session;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import pojo.Eventos;
@@ -48,6 +54,10 @@ public class SendDataEvent extends HttpServlet {
         String startDate=request.getParameter("startDate");
         String endDate=request.getParameter("endDate");
         
+        
+        HttpSession misession = (HttpSession) request.getSession();
+        Session session = (Session)misession.getAttribute("session");
+        
         startDate= startDate.replace('T', ' ');
         endDate = endDate.replace('T', ' ');
         
@@ -62,8 +72,20 @@ public class SendDataEvent extends HttpServlet {
                 endDate + "\n" 
                 );
         
-        EventosDAO evento = new EventosDAO();
-        evento.saveEvento(id,name,location,text,startDate,endDate);
+        
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yy hh:mi:ss");
+        Date str = new Date();
+        Date end = new Date();
+        
+        try {
+            str= sdf.parse(startDate);
+            end= sdf.parse(endDate);
+        } catch (ParseException ex) {
+            Logger.getLogger(SendDataEvent.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        EventosDAO evento = new EventosDAO(session);
+        evento.saveEvento(id,name,location,text,str,end);
         
         //System.out.println(array.getJSONObject(0).get("id").toString());
         /*HttpSession misession = (HttpSession) request.getSession();

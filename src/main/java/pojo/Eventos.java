@@ -7,6 +7,7 @@ package pojo;
 
 
 import java.io.Serializable;
+import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -34,10 +35,10 @@ public class Eventos {
     private String name;
     
     @Column(name="StartDate")
-    private String startdate;
+    private Date startdate;
     
     @Column(name="EndDate")
-    private String enddate;
+    private Date enddate;
 
     public int getIdEventos() {
         return id;
@@ -71,19 +72,19 @@ public class Eventos {
         this.name = name;
     }
 
-    public String getStartdate() {
+    public Date getStartdate() {
         return startdate;
     }
 
-    public void setStartdate(String startdate) {
+    public void setStartdate(Date startdate) {
         this.startdate = startdate;
     }
 
-    public String getEnddate() {
+    public Date getEnddate() {
         return enddate;
     }
 
-    public void setEnddate(String enddate) {
+    public void setEnddate(Date enddate) {
         this.enddate = enddate;
     }
     

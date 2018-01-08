@@ -6,9 +6,10 @@
 package servlet;
 
 import dao.EventosDAO;
-import dao.UsuarioDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -22,8 +23,8 @@ import org.json.JSONObject;
  *
  * @author marcocameros
  */
-@WebServlet(name = "GetDataUser", urlPatterns = {"/GetDataUser"})
-public class GetDataUser extends HttpServlet {
+@WebServlet(name = "GetDataEventToday", urlPatterns = {"/GetDataEventToday"})
+public class GetDataEventToday extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -42,10 +43,10 @@ public class GetDataUser extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet GetDataUser</title>");            
+            out.println("<title>Servlet GetDataEventToday</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet GetDataUser at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet GetDataEventToday at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -77,35 +78,27 @@ public class GetDataUser extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
-        HttpSession misession = (HttpSession) request.getSession();
+                HttpSession misession = (HttpSession) request.getSession();
         Session session = (Session)misession.getAttribute("session");
-        String action=request.getParameter("action");
-        String email=request.getParameter("correo");
-        String clave=request.getParameter("contraseña");
         
-        if(action.equals("get")){
-            if (misession.getAttribute("sesion").equals(true)){
+        System.out.println("GetDataEventToday");
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");
+        LocalDate localDate = LocalDate.now();
+        System.out.println(dtf.format(localDate));
+        String data = dtf.format(localDate).toString();
+        data = data.replace("/", "-");
+        System.out.println(data);
+        if (misession.getAttribute("sesion").equals(true)){
             
-            UsuarioDAO usuario = new UsuarioDAO(session);
+            EventosDAO eventos = new EventosDAO(session);
             JSONObject json = new JSONObject();
             json.put("resultado", true);
-            json.put("data", usuario.getAllUsuario());
+            json.put("data", eventos.getToday(data));
                 
             response.setContentType("application/json utf-8");
             PrintWriter out = response.getWriter();
             out.print(json.toString());
-            }
-            else{
-                response.sendRedirect("Login");
-            }
         }
-        else if (action.equals("save")){
-            UsuarioDAO usuario = new UsuarioDAO(session);
-            usuario.saveEvento(email,clave);
-        }
-        
-        
     }
 
     /**
